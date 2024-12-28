@@ -9,6 +9,7 @@ Music-Visualization: [https://github.com/FSF0912/Music-Visualization](https://gi
 
 
 Font use protocol:
+
 本《MiSans 字体知识产权许可协议》（以下简称“协议”）是我与小米科技有限责任公司（以下简称“小米”或“许可方”）之间有关安装、使用 MiSans 字体（以下简称“MiSans”或“MiSans 字体”）的法律协议。我在使用 MiSans 的所有或任何部分前，接受了本协议中规定的所有条款和条件，且我同意接受本协议所有条款的约束。
 
 根据本协议的条款和条件，许可方在此授予我一份不可转让的、非独占的、免版税的、可撤销的、全球性的版权许可，我依照本协议约定使用 MiSans 字体，且符合下列条件：
