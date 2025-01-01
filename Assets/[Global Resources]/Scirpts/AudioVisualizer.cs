@@ -1,4 +1,6 @@
 using UnityEngine;
+using Cysharp.Threading.Tasks.Linq;
+
 #if UNITY_EDITOR
 using UnityEditor;
 using egl = UnityEditor.EditorGUILayout;
@@ -95,6 +97,16 @@ namespace FSF.CollectionFrame{
         {
             base.OnInspectorGUI();
             var T = target as AudioVisualizer;
+            if(T.LengthSample % 64 != 0){
+                
+                using(new egl.VerticalScope(EditorStyles.helpBox)){
+                    egl.HelpBox("Length of sample buffer must be a power of two between 64 and 8192 !",MessageType.Error);
+                    if(GUILayout.Button("ResetSampleValue")){
+                        T.ResetSampleValue();
+                    }
+                }
+                return;
+            }
             if(T==null){return;}
             if(T.BarsList.Length <= 0){
                 T.ElementCount = egl.IntField("Element Count", T.ElementCount);
@@ -105,15 +117,7 @@ namespace FSF.CollectionFrame{
                     T.GenerateVisualizationBar();
                 }
             }
-            if(T.LengthSample % 64 != 0){
-                egl.Space(20);
-                using(new egl.VerticalScope(EditorStyles.helpBox)){
-                    egl.HelpBox("Length of sample buffer must be a power of two between 64 and 8192 !",MessageType.Error);
-                    if(GUILayout.Button("ResetSampleValue")){
-                        T.ResetSampleValue();
-                    }
-                }
-            }
+            
         }
     }
     #endif

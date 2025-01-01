@@ -44,7 +44,7 @@ namespace FSF.CollectionFrame
             string filePath = $"{Application.streamingAssetsPath}/{path}";
             if (!File.Exists(filePath))
             {
-                throw new FileNotFoundException("File not found.");
+                throw new FileNotFoundException($"File not found.\ntarget path :{filePath}");
             }
 
             string result = File.ReadAllText(filePath);
@@ -88,7 +88,7 @@ namespace FSF.CollectionFrame
             string filePath = $"{Application.streamingAssetsPath}/{path}";
             if (!File.Exists(filePath))
             {
-                throw new FileNotFoundException("File not found.");
+                throw new FileNotFoundException($"File not found.\ntarget path :{filePath}");
             }
 
             using (var reader = new StreamReader(filePath))
@@ -135,7 +135,7 @@ namespace FSF.CollectionFrame
             string filePath = $"{Application.streamingAssetsPath}/{path}";
             if (!File.Exists(filePath))
             {
-                throw new FileNotFoundException("File not found.");
+                throw new FileNotFoundException($"File not found.\ntarget path :{filePath}");
             }
 
             using (FileStream fs = new FileStream(filePath, FileMode.Open))
