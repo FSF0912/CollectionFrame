@@ -1224,7 +1224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   referredCanvas: {fileID: 0}
   canvasGroup: {fileID: 767103793}
-  escapeButton: {fileID: 0}
+  escapeButton: {fileID: 1851966586}
 --- !u!225 &767103793
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3185,7 +3185,6 @@ GameObject:
   - component: {fileID: 1851966588}
   - component: {fileID: 1851966587}
   - component: {fileID: 1851966586}
-  - component: {fileID: 1851966589}
   m_Layer: 5
   m_Name: escapeButton
   m_TagString: Untagged
@@ -3295,19 +3294,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1851966584}
   m_CullTransparentMesh: 1
---- !u!114 &1851966589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1851966584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c38b731cbc5ff428815469137c2d15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popupInterface: {fileID: 767103792}
 --- !u!1 &1856640540
 GameObject:
   m_ObjectHideFlags: 0

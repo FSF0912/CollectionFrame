@@ -38,7 +38,7 @@ namespace FSF.CollectionFrame{
                 );
                 if(adaptPosition) this.transform.position = v3s[0];
                 curveTween?.Kill();
-                curveTween = this.transform.DOPath(v3s, duration, PathType.CatmullRom);
+                curveTween = this.transform.DOPath(v3s, duration, PathType.CatmullRom, PathMode.TopDown2D);
                 fadingTween?.Kill();
                 fadingTween = canvasGroup.DOFade(opened ? 0 : 1,duration);
                 canvasGroup.interactable = !opened;
