@@ -21,7 +21,7 @@ public class GalgameSelector : MonoBehaviour
         animation2.Play();
         string path = Application.streamingAssetsPath + "/shabi/gallist.csv";
         var result = CSVReader.ReadCSV(path, Encoding.UTF8);
-        string[] shower = result[Random.Range(1, result.Count)];
+        string[] shower = result[Random.Range(1, result.Length)];
         string showed = 
         $"游戏名称:{shower[3]}({shower[2]})\n制作公司:{shower[0]}";
         this.result.text = showed;

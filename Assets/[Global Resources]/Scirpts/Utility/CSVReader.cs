@@ -6,7 +6,7 @@ namespace FSF.CollectionFrame
 {
     public static class CSVReader
     {
-        public static List<string[]> ReadCSV(string filePath, Encoding encoding)
+        public static string[][] ReadCSV(string filePath, Encoding encoding)
         {
             List<string[]> tempData = new List<string[]>();
             try
@@ -23,7 +23,7 @@ namespace FSF.CollectionFrame
             }
             catch (System.Exception){}
 
-            return tempData;
+            return tempData.ToArray();
         }
     }
 }
