@@ -1,14 +1,17 @@
-using System;
-using FSF.CollectionFrame;
+using FSF.DialogueSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class test : MonoBehaviour
 {
-    public PopupInterface popupInterface;
+    public CharacterShower shower;
+    public Sprite s1, s2;
+    public Button set;
+    bool enab;
     private void Start() {
-        GetComponent<Button>().onClick.AddListener(()=>{
-            popupInterface.OperatePanel(this.transform.position,true);
+        set.onClick.AddListener(()=>{
+            shower.OutputImage(enab ? s1 : s2);
+            enab = !enab;
         });
     }
 }
