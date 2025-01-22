@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class test : MonoBehaviour
 {
-    public CharacterShower shower;
+    public ImageSwitcher shower;
     public Sprite s1, s2;
     public Button set;
     bool enab;

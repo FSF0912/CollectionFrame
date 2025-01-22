@@ -16,20 +16,25 @@ MonoBehaviour:
   - name: "\u64CD\u4F60\u5988\u903C"
     dialogue: "\u5F53\u524D\u4E0A\u4E0B\u6587\u4E2D\u4E0D\u5B58\u5728\u540D\u79F0\u201Cposition\u201D"
     audio: {fileID: 0}
-    image: {fileID: 21300000, guid: 8e88a66fe4074c340bd52e2ec881ddcb, type: 3}
+    imageOptions:
+    - image: {fileID: 21300000, guid: 7e389bad994c3064c87abaff59c1c486, type: 3}
+      characterDefindID: 0
+    - image: {fileID: 21300000, guid: e8a02e7d76aba4a4dba6cea3ac11c7bb, type: 3}
+      characterDefindID: 1
   - name: "\u51AC\u65E5winterovo"
-    dialogue: "\u306F\u3058\u3081\u307E\u3057\u3066\u3092\u3000\u7E70\u308A\u8FD4\u3059\r\n\r\n\u53CD\u590D\u4E66\u5199\u7740\u521D\u89C1\r\n\r\n\u30DA\u30FC\u30B8\u3092\u3081\u304F\u3063\u3066\u3044\u304F\r\n\r\n\u7FFB\u52A8\u7740\u90A3\u4E00\u9875\r\n\r\n\u306D\u3048\u3000\u304F\u3059\u3050\u3063\u305F\u304F\u3066\u3000\u4F55\u304B\u8DB3\u308A\u306A\u304F\u3066\r\n\r\n\u5450
-      \u5FC3\u4E2D\u5FAE\u5FAE\u53D1\u75D2 \u4F46\u53C8\u4F3C\u4E4E\u5C11\u4E86\u70B9\u4EC0\u4E48\r\n\r\n\u565B\u307F\u5408\u308F\u306A\u304F\u3066\u3000\u3061\u3050\u306F\u3050\u306B\u306A\u3063\u3066\r\n\r\n\u4E4B\u95F4\u53D8\u5F97\u96BE\u4EE5\u5951\u5408
-      \u53D8\u5F97\u652F\u79BB\u7834\u788E\r\n\r\n\u3086\u3073\u304D\u308A\u3052\u3093\u307E\u3093\u3000\u3042\u306E\u65E5\u306E\u5168\u90E8\r\n\r\n\u90A3\u65F6\u7684\u6307\u5934\u76F8\u6263
-      \u8A93\u8A00\u4E0E\u90A3\u65E5\u7684\u56DE\u5FC6"
+    dialogue: "\u306F\u3058\u3081\u307E\u3057\u3066\u3092\u3000\u7E70\u308A\u8FD4\u3059\r\n\r\n\u53CD\u590D\u4E66\u5199\u7740\u521D\u89C1\r\n\r\n\u30DA\u30FC\u30B8\u3092\u3081\u304F\u3063\u3066\u3044\u304F\r\n"
     audio: {fileID: 0}
-    image: {fileID: 21300000, guid: 7e389bad994c3064c87abaff59c1c486, type: 3}
+    imageOptions:
+    - image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      characterDefindID: 0
+    - image: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+      characterDefindID: 1
   - name: New Action
     dialogue: "[00:00.000]\u4F5C\u8BCD : Guiano\r\n[00:01.000]\u4F5C\u66F2 : Guiano\r\n[00:55.162]\u4F55\u3082\u306A\u3044
       \u3067\u75DB\u3044"
     audio: {fileID: 0}
-    image: {fileID: 21300000, guid: eec19781926cd2248b7c9abfde8db555, type: 3}
-  - name: dashaIBI
-    dialogue: "[01:52.925]\u5C31\u7B97\u7A7A\u7A7A\u7684\u4E5F\u597D \u56E0\u4E3A\u6709\u7740\u4E0E\u4F17\u4E0D\u540C\u7684\u6D1E\u7684\u5F62\u72B6"
-    audio: {fileID: 0}
-    image: {fileID: 21300000, guid: 531d0b23bbabdb847b81ca167467aeda, type: 3}
+    imageOptions:
+    - image: {fileID: 21300000, guid: eec19781926cd2248b7c9abfde8db555, type: 3}
+      characterDefindID: 0
+    - image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+      characterDefindID: 1

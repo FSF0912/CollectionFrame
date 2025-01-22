@@ -5,7 +5,8 @@ using DG.Tweening;
 using FSF.Collection;
 
 namespace FSF.DialogueSystem{
-    public class CharacterShower : MonoSingleTon<CharacterShower>{
+    public class ImageSwitcher : MonoBehaviour{
+        public int characterDefindID = 0;
         public Image targetImage1, targetImage2;
         /// <summary>
         /// 为true时，image1在上层(层级中最下面)，i
@@ -14,7 +15,7 @@ namespace FSF.DialogueSystem{
         bool switcher;
         Tween image1_Tween, image2_Tween;
 
-        private void Start() {
+        private void Awake() {
             targetImage1.transform.SetAsLastSibling();
             switcher = true;
             targetImage1.color = Color.white.WithAlpha(1f);
@@ -43,6 +44,14 @@ namespace FSF.DialogueSystem{
                 //
                 switcher = true;
             }
+        }
+
+        public void Interrupt(){
+            image1_Tween?.Kill();
+            image2_Tween?.Kill();
+            targetImage1.color = Color.white.WithAlpha(switcher ? 255 : 0);
+            targetImage2.color = Color.white.WithAlpha(switcher ? 0 : 255);
+            
         }
     }
 }

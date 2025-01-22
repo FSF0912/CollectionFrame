@@ -13,7 +13,7 @@ namespace FSF.DialogueSystem{
         string current_Dialogue;
         bool done = true;
 
-        public void OutputText(string name, string dialogue){
+        public bool OutputText(string name, string dialogue){
             if(done){
                 typer?.Kill();
                 current_Dialogue = dialogue;
@@ -23,28 +23,14 @@ namespace FSF.DialogueSystem{
                     done = true;
                 });
                 done = false;
+                return true;
             }
             else{
                 typer?.Kill();
                 Dialogue.text = current_Dialogue;
                 current_Dialogue = dialogue;
                 done = true;
-            }
-        }
-
-        public void OutputText(string name, string dialogue, Action callBack){
-            if(done){
-                current_Dialogue = dialogue;
-                Name.text = name;
-                Dialogue.text = string.Empty;
-                typer = Dialogue.DOText(dialogue, dialogue.Length * Dialogue_Configs.textTypeDuration).OnComplete(()=>{
-                    callBack();
-                });
-            }
-            else{
-                typer?.Kill();
-                Dialogue.text = current_Dialogue;
-                current_Dialogue = dialogue;
+                return false;
             }
         }
     }
