@@ -1,4 +1,5 @@
 # CollectionFrame-Unity开发集合框架  
+`Unity 6000.0.24f1`  `Universal Render Pipeline`  
 
 ### 预计实现的功能:  
   - [ ] 基本可用的简单对话系统，包括从CSV文件导入等功能(开发进度40%)😭
