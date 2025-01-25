@@ -47,9 +47,51 @@ namespace FSF.DialogueSystem{
             if(TypeWriter.Instance.OutputText(current.name, current.dialogue)){
                 foreach (var item in characterShowers)
                 {
-                    foreach(var item1 in current.imageOptions){
-                        if(item1.characterDefindID == item.characterDefindID){
-                            item.OutputImage(item1.characterImage);
+                    foreach(var imgOption in current.imageOptions){
+                        if(imgOption.characterDefindID == item.characterDefindID){
+                            item.OutputImage(imgOption.characterImage);
+                            switch(imgOption.motionMode){
+                                case MotionMode.LeftEnter:
+
+                                break;
+                                //
+                                case MotionMode.RightEnter:
+
+                                break;
+                                //
+                                case MotionMode.BottomEnter:
+
+                                break;
+                                //
+                                case MotionMode.LeftEscape:
+
+                                break;
+                                //
+                                case MotionMode.RightEscape:
+
+                                break;
+                                //
+                                case MotionMode.Shake:
+
+                                break;
+                                //
+                                case MotionMode.ToCenter:
+
+                                break;
+                                //
+                                case MotionMode.ToLeft:
+
+                                break;
+                                //
+                                case MotionMode.ToRight:
+
+                                break;
+                                //
+                                case MotionMode.ToAppointedPosition:
+
+                                break;
+                                //
+                            }
                         }
                     }
                 }

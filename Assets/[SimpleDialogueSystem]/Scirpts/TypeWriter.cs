@@ -1,8 +1,5 @@
-using System;
-using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using FSF.Collection;
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace FSF.DialogueSystem{

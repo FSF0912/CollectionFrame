@@ -1,8 +1,10 @@
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace FSF.DialogueSystem{
-    #region structures
+    #region Structures
     [System.Serializable]
     public struct SingleAction{
         public string name;
@@ -27,12 +29,18 @@ namespace FSF.DialogueSystem{
     }
     //
     [System.Serializable]
-    public struct ImageOption{
+    public class ImageOption{
         public int characterDefindID;
         public Sprite characterImage;
+        public MotionMode motionMode = MotionMode.Default;
+        public float action_Duration = 0.6f;
+        public Vector2 appointedPosition = Vector2.zero;
         
     }
+    //
     #endregion
+
+    #region Enums
     public enum EnvironmentSettings{
         Default,
         Day,
@@ -40,6 +48,27 @@ namespace FSF.DialogueSystem{
         Night
     };
 
+    public enum MotionMode{
+        Default,
+        LeftEnter,
+        RightEnter,
+        BottomEnter,
+        LeftEscape,
+        RightEscape,
+        Shake,
+        ToCenter,
+        ToLeft,
+        ToRight,
+        ToAppointedPosition
+    };
+
+    public enum Distance{
+        Default,
+        Normal,
+        Far,
+        Near
+    };
+#endregion
 
 
 
@@ -52,4 +81,9 @@ namespace FSF.DialogueSystem{
             }
         }
     }
+    #region Editor
+    #if UNITY_EDITOR
+
+    #endif
+    #endregion
 }
