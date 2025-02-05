@@ -1,21 +1,25 @@
 using UnityEngine;
+using DG.Tweening;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace FSF.DialogueSystem{
+namespace FSF.DialogueSystem
+{
     #region Structures
     [System.Serializable]
-    public struct SingleAction{
+    public struct SingleAction
+    {
         public string name;
         public string dialogue;
         public AudioClip audio;
         
         public Sprite backGround;
         public EnvironmentSettings environmentSettings;
-        public ImageOption[] imageOptions;
+        public CharacterOption[] imageOptions;
 
-        public SingleAction(string name, string dialogue, ImageOption[] options, 
+        public SingleAction(string name, string dialogue, CharacterOption[] options, 
         AudioClip audio, Sprite backGround, EnvironmentSettings settings){
             this.name = name;
             this.dialogue = dialogue;
@@ -29,11 +33,17 @@ namespace FSF.DialogueSystem{
     }
     //
     [System.Serializable]
-    public class ImageOption{
+    public class CharacterOption
+    {
         public int characterDefindID;
         public Sprite characterImage;
-        public MotionMode motionMode = MotionMode.Default;
+        public MotionMode motionMode = MotionMode.None;
+        public Distance distanceMode = Distance.None;
         public float action_Duration = 0.6f;
+        public Ease action_Ease = Ease.InOutSine;
+        [Header("Custom Options")]
+        public bool useOrigin = false;
+        public Vector2 origin = Vector2.zero;
         public Vector2 appointedPosition = Vector2.zero;
         
     }
@@ -41,15 +51,17 @@ namespace FSF.DialogueSystem{
     #endregion
 
     #region Enums
-    public enum EnvironmentSettings{
-        Default,
+    public enum EnvironmentSettings
+    {
+        None,
         Day,
         Twilight,
         Night
     };
 
-    public enum MotionMode{
-        Default,
+    public enum MotionMode
+    {
+        None,
         LeftEnter,
         RightEnter,
         BottomEnter,
@@ -59,11 +71,12 @@ namespace FSF.DialogueSystem{
         ToCenter,
         ToLeft,
         ToRight,
-        ToAppointedPosition
+        Custom
     };
 
-    public enum Distance{
-        Default,
+    public enum Distance
+    {
+        None,
         Normal,
         Far,
         Near
@@ -73,10 +86,13 @@ namespace FSF.DialogueSystem{
 
 
     [CreateAssetMenu(fileName = "DialogueProfile", menuName = "FSF_Custom/DialogueSystem/DialogueProfile", order = 30000)]
-    public class DialogueProfile : ScriptableObject{
+    public class DialogueProfile : ScriptableObject
+    {
         public SingleAction[] actions;
-        public SingleAction this[int index]{
-            get{
+        public SingleAction this[int index]
+        {
+            get
+            {
                 return actions[index];
             }
         }

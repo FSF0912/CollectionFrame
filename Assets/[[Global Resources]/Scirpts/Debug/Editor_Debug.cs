@@ -6,7 +6,7 @@ using egl = UnityEditor.EditorGUILayout;
 using UnityEngine.UIElements;
 
 namespace FSF.Collection{
-    public class Editor_Debug : MonoSingleTon<Editor_Debug>
+    public class Editor_Debug : MonoSingleton<Editor_Debug>
     {
         public KeyCode ReStartSceneCode = KeyCode.R;
 

@@ -1,120 +1,126 @@
 using FSF.Collection;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
+using System.Linq;
+using System.Collections.Generic;
 
-namespace FSF.DialogueSystem{
-    public class DialogueManager : MonoSingleTon<DialogueManager>
+namespace FSF.DialogueSystem
+{
+    public class DialogueManager : MonoSingleton<DialogueManager>
     {
-        public DialogueProfile profile;
-        public AudioSource audioSource;
-        public KeyCode[] activedKeys = {KeyCode.Space, KeyCode.Return, KeyCode.F};
-        [Space(7.00F)] public ImageSwitcher[] characterShowers;
-        public ImageSwitcher backGround;
-        int index = 0;
-        [HideInInspector] public bool allowInput = true;
+        [SerializeField] private GameObject _imageSwitcherPrefab;
+        [SerializeField] private DialogueProfile _profile;
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private KeyCode[] _activationKeys = 
+        { KeyCode.Space, KeyCode.Return, KeyCode.F };
+        [Space(14f)]
+        [SerializeField] private RectTransform _charactersHolder;
+        private List<Character> _characterDisplays =new();
+        [SerializeField] private Character _background;
 
-        bool inputResult{
-            get{
-                if(!allowInput){return false;}
-                else{
-                    if(Input.GetMouseButtonDown(0)){return true;}
-                    else{
-                        foreach(var item in activedKeys){
-                            if(Input.GetKeyDown(item)){return true;}
-                        }
-                        return false;
-                    }
-                }
+
+        private int _currentIndex;
+        [HideInInspector] public bool AllowInput = true;
+
+        // 输入检测属性
+        private bool InputReceived => AllowInput && (
+            Input.GetMouseButtonDown(0) || 
+            _activationKeys.Any(Input.GetKeyDown)
+        );
+
+        private void Start() => ShowNextDialogue();
+
+        private void Update()
+        {
+            if (InputReceived)
+            {
+                ShowNextDialogue();
             }
         }
 
-        private void Start() {
-            ShowDialogue();
-        }
-
-        private void Update() {
-            if(inputResult){
-                ShowDialogue();
-            }
-        }
-
-        public void ShowDialogue(){
-            if(index >= profile.actions.Length){
-                //return;
-                index = 0;
-            }
-            SingleAction current = profile[index];
-            if(TypeWriter.Instance.OutputText(current.name, current.dialogue)){
-                foreach (var item in characterShowers)
-                {
-                    foreach(var imgOption in current.imageOptions){
-                        if(imgOption.characterDefindID == item.characterDefindID){
-                            item.OutputImage(imgOption.characterImage);
-                            switch(imgOption.motionMode){
-                                case MotionMode.LeftEnter:
-
-                                break;
-                                //
-                                case MotionMode.RightEnter:
-
-                                break;
-                                //
-                                case MotionMode.BottomEnter:
-
-                                break;
-                                //
-                                case MotionMode.LeftEscape:
-
-                                break;
-                                //
-                                case MotionMode.RightEscape:
-
-                                break;
-                                //
-                                case MotionMode.Shake:
-
-                                break;
-                                //
-                                case MotionMode.ToCenter:
-
-                                break;
-                                //
-                                case MotionMode.ToLeft:
-
-                                break;
-                                //
-                                case MotionMode.ToRight:
-
-                                break;
-                                //
-                                case MotionMode.ToAppointedPosition:
-
-                                break;
-                                //
-                            }
-                        }
-                    }
-                }
-
-                if(current.backGround != null){
-                    backGround.OutputImage(current.backGround);
-                }
-            }
-            else{
-                foreach (var item in characterShowers)
-                {
-                    item.Interrupt();
-                }
-                backGround.Interrupt();
+        public void ShowNextDialogue()
+        {
+            if (_profile == null || _currentIndex >= _profile.actions.Length)
+            {
+                ResetDialogue();
+                return;
             }
 
+            var currentAction = _profile.actions[_currentIndex];
             
-            if(current.audio != null){
-                audioSource.Stop();
-                audioSource.clip = current.audio;
-                audioSource.Play();
+            if (TypeWriter.Instance.OutputText(currentAction.name, currentAction.dialogue))
+            {
+                UpdateCharacterDisplays(currentAction);
+                UpdateBackground(currentAction);
+                PlayAudio(currentAction);
             }
-            index++;
+            else
+            {
+                InterruptCharacterActions();
+            }
+
+            _currentIndex++;
+        }
+
+        private void UpdateCharacterDisplays(SingleAction action)
+        {
+            foreach (var option in action.imageOptions)
+            {
+                
+                var character = _characterDisplays.FirstOrDefault(
+                    _display => _display.characterDefindID == option.characterDefindID
+                );
+                if(character == default)
+                {
+                    character = InstantiateCharacter(option);
+                }
+
+                character.OutputImage(option.characterImage);
+                character.Animate(option);
+            }
+        }
+
+        private Character InstantiateCharacter(CharacterOption option)
+        {
+            var temp = Instantiate(_imageSwitcherPrefab, _charactersHolder);
+            var rt = temp.transform as RectTransform;
+            rt.anchoredPosition = new(-2000, -1500);
+            rt.sizeDelta = new(0, 1100);
+
+            var component = temp.GetComponent<Character>();
+            component.characterDefindID = option.characterDefindID;
+            _characterDisplays.Add(component);
+            return component;
+        }
+
+        private void UpdateBackground(SingleAction action)
+        {
+            if (action.backGround != null)
+            {
+                _background.OutputImage(action.backGround);
+            }
+        }
+
+        private void PlayAudio(SingleAction action)
+        {
+            if (action.audio == null) return;
+
+            _audioSource.Stop();
+            _audioSource.clip = action.audio;
+            _audioSource.Play();
+        }
+
+        private void InterruptCharacterActions()
+        {
+            foreach (var display in _characterDisplays)
+            {
+                display.Interrupt();
+            }
+            _background.Interrupt();
+        }
+
+        public void ResetDialogue()
+        {
+            _currentIndex = 0;
         }
     }
 }

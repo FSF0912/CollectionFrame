@@ -3,7 +3,7 @@ using FSF.Collection;
 using UnityEngine.UI;
 
 namespace FSF.DialogueSystem{
-    public class TypeWriter : MonoSingleTon<TypeWriter>
+    public class TypeWriter : MonoSingleton<TypeWriter>
     {
         public Text Name, Dialogue;
         Tween typer;

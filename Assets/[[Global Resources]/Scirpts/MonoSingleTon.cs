@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace FSF.Collection{
-public class MonoSingleTon<T> : MonoBehaviour where T : MonoSingleTon<T>
+public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
 {
     private static T instance;
     public static T Instance{
